@@ -7,12 +7,17 @@
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
     <title>First Python HTML app</title>
+    <py-env>
+        - paths:
+            - /myPythonFile.py
+    </py-env>
 </head>
 <body>
     <py-script>
 from datetime import datetime 
+from myPythonFile import myfunction
 print("Here we are")
-print("Hello World!")
+myfunction()
 print(f"It's now {datetime.now()}")
     </py-script>
 </body>
