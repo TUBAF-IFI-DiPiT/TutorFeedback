@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-    <title>First Python HTML app</title>
+    <link rel="stylesheet" type="text/css" href="df_style.css"/>
+    <title>Student activities on GitHub</title>
     <py-env>
-        - paths:
-            - /myPythonFile.py
+        - pandas
     </py-env>
 </head>
 <body>
+    <b>Students Adaptability Level in Online Education</b>
+    <p id="csv"></p>
     <py-script>
-from datetime import datetime 
-from myPythonFile import myfunction
-print("Here we are")
-myfunction()
-print(f"It's now {datetime.now()}")
+        from pyodide.http import open_url
+        import pandas as pd
+        url = "https://raw.githubusercontent.com/TUBAF-IFI-DiPiT/TutorFeedback/gh-pages/anonym_repos.csv"
+        url_content = open_url(url)
+        anonym_pdRepositories = pd.read_csv(url_content)
+
+        anonym_pdRepositories['commit_count'] = anonym_pdRepositories['commit_count'] - 2
+        result = anonym_pdRepositories[(anonym_pdRepositories.year == 2022) & (anonym_pdRepositories.task == 3)][['teamKey', 'branch_count', 
+                                                                    'commit_count', 'release_count', 'stars']]
+                                                  
+        pyscript.write('csv', result.to_html(classes="mystyle"))
     </py-script>
 </body>
 </html>
