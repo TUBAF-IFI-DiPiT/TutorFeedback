@@ -1,25 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
     <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
-    <link rel="stylesheet" type="text/css" href="df_style.css"/>
-    <title>Student activities on GitHub</title>
+    <title>First Python HTML app</title>
     <py-env>
-        - pandas
-        - matplotlib
         - paths:
-          - /RepoOverview.py
+            - /myPythonFile.py
     </py-env>
 </head>
 <body>
-    <b>Students Adaptability Level in Online Education</b>
-    <p id="csv"></p>
     <py-script>
-        from datetime import datetime 
-        from RepoOverview import generateTable
-        result = generateTable()
-        pyscript.write('csv', result.to_html(classes="mystyle"))
+from datetime import datetime 
+from myPythonFile import myfunction
+print("Here we are")
+myfunction()
+print(f"It's now {datetime.now()}")
     </py-script>
 </body>
 </html>
