@@ -17,8 +17,8 @@
     <p id="csv"></p>
     <py-script>
         from datetime import datetime 
-        import RepoOverview as ro
-        result = ro.generateTable()
+        from RepoOverview import generateTable
+        result = generateTable()
         pyscript.write('csv', result.to_html(classes="mystyle"))
     </py-script>
 </body>
